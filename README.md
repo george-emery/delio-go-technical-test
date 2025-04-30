@@ -1,26 +1,67 @@
-# Delio Golang Technical Test
+# Stock Price Checker Technical Test
 
-## The task 📈
+## The Task
 
-Delio engineering have been tasked with checking the current price of APPL and MSFT shares and comparing them to the previous day's closing price.
+Create a CLI application in Go that checks the current price of AAPL and MSFT shares and compares them to the previous day's closing price using the Finnhub API.
 
-## Requirements 🗃️
+## Requirements
 
-Your job is to create a CLI based application that uses the Finnhub API (https://finnhub.io/docs/api/quote) to compare the current price of 10 APPL and 10 MSFT shares with their previous day's closing price. 
+1. Create a CLI application that:
 
-To complete this task, you'll need to:
+   - Fetches current prices for AAPL and MSFT from Finnhub API
+   - Compares them with previous day's closing prices
+   - Calculates P&L for 10 shares of each stock
+   - Displays results in the terminal
 
-* Create a a CLI application with Golang
-* Retrieve share value of MSFT and APPL shares from finnhub
-* Run profit & loss calculation on both MSFT & APPL shares
-* Return values to command line
-* Add tests
+2. Technical Requirements:
+   - Use Go 1.22 or later
+   - Implement proper error handling
+   - Write unit tests
+   - Use the Finnhub API (https://finnhub.io/docs/api/quote)
 
-## Bonus points 🥇
+## Getting Started
 
-* Utilise the concurrency of Go for API calls & profit and loss calculations
-* Add a benchmark to the service
+1. Fork this repository
+2. Set up your development environment:
 
-## How to submit 🔗
+   ```bash
+   go mod init github.com/yourusername/go-technical-test
+   ```
 
-- Share a link to a public or private repository on GitHub.
+3. Get a Finnhub API key from https://finnhub.io
+
+## Implementation Tips
+
+- Consider using a CLI framework like Cobra or urfave/cli
+- Use goroutines for concurrent API calls
+- Implement proper error handling and logging
+- Write tests for your implementation
+- Consider adding benchmarks
+
+## Bonus Points
+
+- Implement concurrent API calls
+- Add benchmarks
+- Add configuration options (e.g., number of shares, stock symbols)
+- Add proper logging
+- Implement rate limiting for API calls
+
+## Submission
+
+1. Create a pull request with your implementation
+2. Include:
+   - Working code
+   - Tests
+   - Documentation
+   - Instructions for running the application
+
+## Project Structure
+
+```
+.
+├── cmd/          # Command-line interface code
+├── internal/     # Private application code
+├── pkg/          # Public library code
+├── main.go       # Application entry point
+└── go.mod        # Go module file
+```
