@@ -10,7 +10,7 @@ Create a CLI application in Go that checks the current price of AAPL and MSFT sh
 
    - Fetches current prices for AAPL and MSFT from Finnhub API
    - Compares them with previous day's closing prices
-   - Calculates P&L for 10 shares of each stock
+   - Calculates P&L (Profit and Loss) for 10 shares of each stock
    - Displays results in the terminal
 
 2. Technical Requirements:
@@ -21,7 +21,7 @@ Create a CLI application in Go that checks the current price of AAPL and MSFT sh
 
 ## Getting Started
 
-1. Fork this repository
+1. Fork this template repository
 2. Set up your development environment:
 
    ```bash
@@ -45,23 +45,3 @@ Create a CLI application in Go that checks the current price of AAPL and MSFT sh
 - Add configuration options (e.g., number of shares, stock symbols)
 - Add proper logging
 - Implement rate limiting for API calls
-
-## Submission
-
-1. Create a pull request with your implementation
-2. Include:
-   - Working code
-   - Tests
-   - Documentation
-   - Instructions for running the application
-
-## Project Structure
-
-```
-.
-├── cmd/          # Command-line interface code
-├── internal/     # Private application code
-├── pkg/          # Public library code
-├── main.go       # Application entry point
-└── go.mod        # Go module file
-```
