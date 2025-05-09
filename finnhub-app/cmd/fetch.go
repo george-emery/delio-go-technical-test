@@ -29,6 +29,8 @@ type SymbolResponse struct {
 
 // initialiseFinnhubClient Initialise the Finnhub Client using the provided api token
 func initialiseFinnhubClient(apiToken string) (*finnhub.DefaultApiService, error) {
+	log.Println("Setting up finnhub client") // Would set up a better logging system with configurable log levels
+	// if I had more time
 	cfg := finnhub.NewConfiguration()
 	cfg.AddDefaultHeader("X-Finnhub-Token", apiToken)
 	return finnhub.NewAPIClient(cfg).DefaultApi, nil
@@ -45,6 +47,7 @@ func Execute() {
 
 // fetchAndPrintData Pulls data from the finnhub api, then sends it to be printed to stdOut
 func fetchAndPrintData(cmd *cobra.Command, args []string) (err error) {
+	log.Println("Beginning fet and print command")
 	if len(args) == 0 {
 		log.Println("Using default args")
 		args = []string{"AAPL", "MSFT"} // Decided to use args for the list of symbols, though I did consider using a
@@ -77,6 +80,7 @@ func fetchAndPrintData(cmd *cobra.Command, args []string) (err error) {
 // fetchData Pulls data from the finnhub api, then puts the relevant data in a SymbolResponse and pushes that to the output channel
 func fetchData(symbol string, output chan SymbolResponse, finnhubQuoteGetter finnhubGetQuoteInterface, wg *sync.WaitGroup) {
 	defer wg.Done()
+	log.Printf("Beginning fetch data for symbol %s", symbol)
 
 	quote, _, err := finnhubQuoteGetter.GetQuote(symbol)
 	if err != nil {
@@ -104,6 +108,7 @@ func fetchData(symbol string, output chan SymbolResponse, finnhubQuoteGetter fin
 
 // printData Prints the data in the response object to the writer object
 func printData(writer io.Writer, response SymbolResponse, shares int64, longOutput bool) (err error) {
+	log.Printf("Beginning print data for symbol %s", response.Symbol)
 	if response.Error != nil {
 		log.Println(fmt.Sprintf("Error while fetching finnhub data for symbol %s", response.Symbol), response.Error)
 		_, err = fmt.Fprintf(writer, "%s:Error\n", response.Symbol)
